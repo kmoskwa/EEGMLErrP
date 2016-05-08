@@ -5,8 +5,10 @@ if exist('dataSize', 'var')
         if 0 == n
             continue;
         end
-        if n > 10
-            n = 10;
+        if (1 == limitStimNumber)
+            if n > 10
+                n = 10;
+            end
         end
         for electrode = electrodesArray
             clearvars frames;

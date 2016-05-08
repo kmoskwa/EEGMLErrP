@@ -3,10 +3,10 @@ thrKBMalfunc      = 0.45; % s
 thrArrowAppear    = 2.1;  % s
 thrStartTime      = 5.0;  % s
 fontSize          = 8; 
-stimRawFile       = 'RZ_StimRawAllSessions.mat';
-dataRawFile       = 'RZ_DataRawAllSessions.mat';
-%dataOVPFile       = 'PG_DataOVPAllSessions_2-20Hz.mat';
-%stimRawName        = 'PG_S1_StimRaw';
+refElectrode       = 'A2';
+eval(sprintf('stimRawFile = ''%s_StimRawAllSessions'';', subjectInitials));
+eval(sprintf('dataRawFile = ''%s_DataRawAllSessions'';', subjectInitials));
+
 %Open Vibe stimulations4
 %defines general offset of the stimulations from OpenVibe (Label0)
 OV_STIM_LABEL0      = 33024;
@@ -37,5 +37,3 @@ SA_TEMP             = 12;
 SA_SIZEOF           = SA_TEMP;
 SA_STIM_FIRST       = SA_STIM_APPEAR;
 SA_STIM_LAST        = SA_STIM_KB_MALFUNC;
-
-    

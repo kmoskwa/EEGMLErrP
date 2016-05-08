@@ -13,7 +13,7 @@ if exist('dataSize', 'var')
         else
             clf
         end
-        %axis([0 (windowBefore + windowAfter) * samplingFreq -10 10]);
+        axis([0 (windowBefore + windowAfter) * samplingFreq -30 20]);
         hold;
         temp = line([0 samplingFreq * (windowBefore + windowAfter)], [0 0]);
         set(temp,'Color','k')
@@ -55,10 +55,10 @@ if exist('dataSize', 'var')
         end
         title(dataHead(n));
         if 0 == singleImagePreview %exist('preview', 'var')
-            saveas(gcf, char(strcat('session', int2str(sessionNo), '_', dataHead(n), '.png')));
+            saveas(gcf, char(strcat(subjectInitials, 'session', int2str(sessionNo), '_', dataHead(n), postFix, '.png')));
         end
     end
     if 1 == singleImagePreview %exist('preview', 'var')
-        saveas(gcf, char(strcat('session', int2str(sessionNo), '_', '.pdf')));
+        saveas(gcf, char(strcat(subjectInitials, 'session', int2str(sessionNo), '_', postFix, '.pdf')));
     end
 end
