@@ -23,6 +23,7 @@ if exist('dataSize', 'var')
             framesMean(:, electrode, k) = mean(frames(:,:), 2);
             % remove DC offset
             framesMean(:, electrode, k) = framesMean(:, electrode, k) - mean(framesMean(:, electrode, k));
+            %framesMean(:, electrode, k) = filtfilt(filter, framesMean(:, electrode, k));
         end   
     end
 end

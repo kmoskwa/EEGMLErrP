@@ -1,9 +1,15 @@
 if exist('dataSize', 'var')
     clf;
+    xlabel('Time (sec)');
+    ylabel('Potential (uV)');    
     %clearvars  preview;
     %preview = 1;
+    axisMult = 1000;
+    axisLeft = -windowBefore * axisMult;
+    axisRight = windowAfter * axisMult;
     lspLen = 1 + (windowBefore + windowAfter) * samplingFreq;
-    time = linspace(-windowBefore, windowAfter, lspLen)';
+    %time = linspace(-axisLeft, axisRight, lspLen)';
+    time = linspace(axisLeft, axisRight, (windowBefore + windowAfter) * samplingFreq + 1);
     currentSubPlot = 1;
     for n = electrodesArray
         if 1 == singleImagePreview %exist('preview', 'var')
@@ -12,14 +18,18 @@ if exist('dataSize', 'var')
             set(gca,'fontsize',fontSize)
         else
             clf
+            xlabel('Time [ms]');
+            ylabel('Amplitude [uV]');    
         end
-        axis([0 (windowBefore + windowAfter) * samplingFreq -30 20]);
+        axis([axisLeft axisRight -axisSize axisSize]);
         hold;
-        temp = line([0 samplingFreq * (windowBefore + windowAfter)], [0 0]);
+        temp = line([axisLeft axisRight], [0 0]);
         set(temp,'Color','k')
-        temp = line([samplingFreq * windowBefore samplingFreq * windowBefore], [-20 20]);
+        %temp = line([samplingFreq * windowBefore samplingFreq * windowBefore], [-20 20]);
+        temp = line([0 0], [-axisSize axisSize]);
         set(temp,'Color','k')
-        temp = line([samplingFreq * (windowBefore + 1) samplingFreq * (windowBefore + 1)], [-10 10]);
+        temp = line([NeTime * axisMult NeTime * axisMult], [-axisSize/2 -axisSize]);
+        %temp = line([samplingFreq * (windowBefore + 1) samplingFreq * (windowBefore + 1)], [-10 10]);
         set(temp,'Color','k')
         for k = stimulationsToProcess
             temp = stimRef(1, k);
@@ -45,13 +55,11 @@ if exist('dataSize', 'var')
                 otherwise
                     c = 'b';
             end
-            %time = linspace(0, 10, 300);
-            %temp = temp / samplingFreq;
-            %plot((0:length(temp)-1)/256, temp);
-            plot(temp, c);
+            %plot(temp, c);
+            plot(time, temp, c);
         end
         if 1 == drawDifferences 
-            plot(tempE - tempC, 'k');
+            plot(time, tempE - tempC, 'k');
         end
         title(dataHead(n));
         if 0 == singleImagePreview %exist('preview', 'var')
