@@ -4,9 +4,9 @@ if ~exist('automation', 'var')
 end
 subjectInitials   = 'PG';
 subjectInitials   = 'RZ';
-sessionNo         = 1;
+sessionNo         = 2;
 % 1 - to draw additional Error - Correct line (black)
-drawDifferences   = 1; 
+drawDifferences   = 0; 
 % 1 - to substract reference channel ('A') from all other channels
 refSubstract      = 1;
 % 0 - to disable limit, other number - set specific limit
@@ -14,16 +14,17 @@ limitStimNumber   = 0;
 % initials of operator
 windowBefore      = 1.0;  % s
 windowAfter       = 1.0;  % s
-NeTime            = 0.2 ;  % s
+%NeTime            = 0.2 ;  % s
 NeTime            = 0.08 ;  % s
 axisSize          = 30;   % uV
+maxThreshold      = -1;
 % 0 no filter
 % 1 filter original data (bandpassiir, zero-phase)
 % 2 filter original data (bandpassiir)
 % 11 filter mean data (bandpassiir, zero-phase)
 % 12 filter mean data (bandpassiir)
 filterUse         = 1;
-filterLo          = 1.0;
+filterLo          = 1.00;
 filterHi          = 10.0;
 %electrodes        = ['F3 ';'C3 ';'P3 ';'F7 ';'T3 ';'T5 ';'Fz ';'F4 ';'C4 ';'P4 ';'Cz ';'Pz '];
 electrodes        = 'all';
@@ -31,7 +32,7 @@ electrodes        = ['Fp1';'F3 ';'C3 ';'P3 ';'O1 ';'F7 ';'T3 ';'T5 ';'Fz ';'Fp2'
 electrodes        = ['Cz ';'F3 ';'F4 '];
 electrodes        = ['T4 '];
 electrodes        = ['Fz ';'Cz ';'C3 ';'C4 ';'Pz '];
-electrodes        = ['Cz '];
+electrodes        = ['C4 '];
 electrodes        = ['F4 '];
 % for one EPS image with subplots - set to 1; for separate image for each electrode - set to 0
 singleImagePreview= 0; 
