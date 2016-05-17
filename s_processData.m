@@ -30,6 +30,7 @@ if exist('dataSize', 'var')
                         frames(:, e, electrode, k) = frameTemp;
                         if (1 == drawIntermediate)
                             %plot(frames(:, e, electrode, k)); pause(0.1);
+                            figure();
                             plot(frameTemp); pause(0.1);
                         end
                         e = e + 1;
